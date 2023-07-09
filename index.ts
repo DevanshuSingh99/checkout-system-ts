@@ -116,6 +116,48 @@ function testCase2() {
     checkout.scan("op11");
     console.log(`Scanned: wtch, op11, op11, op11, buds, buds, op11, op11 = $${checkout.total()}`);
 }
+function testCase3() {
+    //SKUs Scanned: buds x7 Total expected: $649.95
+    // breakdown: offer 3 for 2 will be applied twice so ((129.99 * 2) * 2) + 129.99 for extra 1 buds
+
+    var checkout = new Checkout(pricingRules1);
+    checkout.scan("buds");
+    checkout.scan("buds");
+    checkout.scan("buds");
+    checkout.scan("buds");
+    checkout.scan("buds");
+    checkout.scan("buds");
+    checkout.scan("buds");
+    console.log(`Scanned: buds x7 = $${checkout.total()}`);
+}
+function testCase4() {
+    //SKUs Scanned: wtch x4 ,buds, op11 ,op10 Total expected: $2729
+
+    var checkout = new Checkout(pricingRules1);
+    checkout.scan("wtch");
+    checkout.scan("wtch");
+    checkout.scan("wtch");
+    checkout.scan("wtch");
+    checkout.scan("buds");
+    checkout.scan("op11");
+    checkout.scan("op10");
+
+    console.log(`Scanned: wtch x4, buds, op11, op10 = $${checkout.total()}`);
+}
+function testCase5() {
+    //SKUs Scanned: wtch ,buds, op11 ,op10 Total expected: $2159.96
+
+    var checkout = new Checkout(pricingRules1);
+    checkout.scan("wtch");
+    checkout.scan("buds");
+    checkout.scan("op11");
+    checkout.scan("op10");
+
+    console.log(`Scanned: wtch ,buds, op11 ,op10 = $${checkout.total()}`);
+}
 
 testCase1();
 testCase2();
+testCase3();
+testCase4();
+testCase5();
